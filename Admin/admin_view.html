@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | Braids By Lima</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+  <nav class="navbar navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand text-primary fw-bold" href="#">Braids By Lima Admin</a>
+    <a href="/index.html" class="btn btn-outline-primary btn-sm">View Site</a>
+  </div>
+</nav>
+
+  <div class="container py-5">
+
+    <h1 class="text-center mb-5">Admin Dashboard</h1>
+
+    <!-- Summary -->
+    <div class="row mb-5 text-center">
+      <div class="col-md-3"><div class="card p-3 shadow-sm"><h5>Total Appointments</h5><h3><?= $totalAppointments ?></h3></div></div>
+      <div class="col-md-3"><div class="card p-3 shadow-sm"><h5>Pending</h5><h3 class="text-warning"><?= $pending ?></h3></div></div>
+      <div class="col-md-3"><div class="card p-3 shadow-sm"><h5>Confirmed</h5><h3 class="text-success"><?= $confirmed ?></h3></div></div>
+      <div class="col-md-3"><div class="card p-3 shadow-sm"><h5>Cancelled</h5><h3 class="text-danger"><?= $cancelled ?></h3></div></div>
+    </div>
+
+    <!-- Appointments -->
+    <div class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Appointments</h3>
+        <input type="text" id="searchInput" class="form-control w-25" placeholder="Search name or hairstyle...">
+      </div>
+
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Hairstyle</th>
+            <th>Stylist</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Request</th>
+            <th>Payment</th>
+            <th>Transaction ID</th>
+            <th>Status</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody id="bookingTable">
+          <?php foreach ($appointments_data as $row): ?>
+          <tr>
+            <td><?= $row['id']; ?></td>
+            <td><?= htmlspecialchars($row['name']); ?></td>
+            <td><?= htmlspecialchars($row['email']); ?></td>
+            <td><?= htmlspecialchars($row['phone']); ?></td>
+            <td><?= htmlspecialchars($row['hairstyle']); ?></td>
+            <td><?= htmlspecialchars($row['stylist']); ?></td>
+            <td><?= htmlspecialchars($row['appointment_date']); ?></td>
+            <td><?= htmlspecialchars($row['appointment_time']) ?></td>
+            <td><?= htmlspecialchars($row['special_request']); ?></td>
+            <td><?= htmlspecialchars($row['payment_method']); ?></td>
+            <td><?= htmlspecialchars($row['transaction_id']); ?></td>
+            <td>
+              <form method="POST" action="../Backend/update_status.php">
+                <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                  <option <?= $row['status']=='Pending'?'selected':'' ?>>Pending</option>
+                  <option <?= $row['status']=='Confirmed'?'selected':'' ?>>Confirmed</option>
+                  <option <?= $row['status']=='Cancelled'?'selected':'' ?>>Cancelled</option>
+                </select>
+              </form>
+            </td>
+            <td><?= $row['created_at'] ?? '-' ?></td>
+          </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact Messages -->
+    <div>
+      <h3>Contact Messages (<?= $totalMessages ?>)</h3>
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($messages_data as $msg): ?>
+          <tr>
+            <td><?= $msg['id']; ?></td>
+            <td><?= htmlspecialchars($msg['name']); ?></td>
+            <td><?= htmlspecialchars($msg['email']); ?></td>
+            <td><?= htmlspecialchars($msg['phone']); ?></td>
+            <td><?= htmlspecialchars($msg['message']); ?></td>
+            <td><?= $msg['date_sent']; ?></td>
+          </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Filter search
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+      const search = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#bookingTable tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(search) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

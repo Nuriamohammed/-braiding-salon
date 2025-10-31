@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Braids By Lima</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">Braids By Lima</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="About Us.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="Contact Us.html">Contact</a></li>
+        <li class="nav-item"><a class="btn btn-primary" href="Book Us.html">Book Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <h1>Book an Appointment</h1>
+  <form action="Backend/book_process.php" method="POST">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Full name</label>
+        <input id="name" name="name" class="form-control" required>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Phone</label>
+        <input id="phone"  name="phone" class="form-control" required>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Email (optional)</label>
+        <input id="email" name="email" type="email" class="form-control">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="hairstyle" class="form-label">Hairstyle</label>
+        <select name="hairstyle" id="hairstyle" class="form-select" required>
+  <option value="">Choose a style</option>
+  <option value="Box Braids">Box Braids — ₵350</option>
+  <option value="Knotless Box Braids">Knotless Box Braids — ₵350</option>
+  <option value="Big Eye Box Braids">Big Eye Box Braids — ₵350</option>
+  <option value="Knotless Braids">Knotless Braids — ₵400</option>
+  <option value="Cornrows">Cornrows — ₵250</option>
+</select>
+
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="stylist" class="form-label">Preferred stylist (optional)</label>
+        <select id="stylist" name="stylist" class="form-select">
+          <option value="">No preference</option>
+          <option value="1">Lima</option>
+          <option value="2">Amina</option>
+        </select>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <label for="appointment_date" class="form-label">Date</label>
+        <input id="appointment_date" name="appointment_date" type="date" class="form-control" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="appointment_time" class="form-label">Time</label>
+        <input name="appointment_time" type="time" class="form-control">
+      </div>
+
+      <div class="col-12 mb-3">
+        <label class="form-label">Special requests</label>
+        <textarea name="special_request" class="form-control" rows="2"></textarea>
+      </div>
+
+      <div class="mb-3">
+  <label for="payment_method" class="form-label">Payment Method</label>
+  <select name="payment_method" id="payment_method" class="form-select" required>
+    <option value="">-- Select Payment Method --</option>
+    <option value="Online">Online (Mobile Money)</option>
+    <option value="In-person">Pay at Salon</option>
+  </select>
+</div>
+
+<!-- Online Payment Info (hidden by default) -->
+<div id="online_payment_section" style="display: none;">
+  <div class="alert alert-info">
+    <strong>Pay via Mobile Money:</strong><br>
+    Send payment to <strong>055 123 4567</strong> (Braids By Lima).
+  </div>
+
+  <div class="mb-3">
+    <label for="transaction_id" class="form-label">Transaction ID</label>
+    <input type="text" name="transaction_id" id="transaction_id" class="form-control" placeholder="Enter your MoMo transaction ID" />
+  </div>
+</div>
+
+    </div>
+
+    <div id="formAlert" class="alert d-none"></div>
+
+    <button class="btn btn-primary" type="submit">Send booking</button>
+  </form>
+</div>
+
+<script>
+  const paymentSelect = document.getElementById('payment_method');
+  const onlineSection = document.getElementById('online_payment_section');
+
+  paymentSelect.addEventListener('change', function() {
+    if (this.value === 'Online') {
+      onlineSection.style.display = 'block';
+    } else {
+      onlineSection.style.display = 'none';
+    }
+  });
+   // Get hairstyle name from URL and set it in the form
+  const params = new URLSearchParams(window.location.search);
+  const hairstyle = params.get("hairstyle");
+
+  if (hairstyle) {
+    document.getElementById("hairstyle").value = hairstyle;
+  }
+</script>
+</body>
+</html>

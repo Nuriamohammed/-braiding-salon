@@ -1,0 +1,106 @@
+/* ===== ABOUT US PAGE STYLING ===== */
+
+/* General setup */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff7fb;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  color: #d63384;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  color: #b0266a;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Lead paragraph */
+.lead {
+  text-align: center;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+/* Image section */
+img.img-fluid {
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+img.img-fluid:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(214, 51, 132, 0.25);
+}
+
+/* Section layout */
+section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.row {
+  align-items: center;
+}
+
+/* Navbar consistency */
+.navbar-brand {
+  font-weight: 700;
+  color: #d63384 !important;
+}
+
+.nav-link:hover {
+  color: #d63384 !important;
+}
+
+/* Button adjustments */
+.btn-primary {
+  background-color: #d63384;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #b0266a;
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Subtle fade-in animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section, img, h3, p {
+  animation: fadeUp 0.8s ease both;
+}

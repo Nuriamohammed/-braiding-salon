@@ -1,0 +1,110 @@
+/* ===== General Layout ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+h1, h3, h5 {
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+/* ===== Navbar / Header ===== */
+h1 {
+  color: #d63384;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== Cards (Summary Section) ===== */
+.card {
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Color accents */
+.card h5 {
+  color: #777;
+}
+
+/* ===== Table Styling ===== */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead {
+  background: #d63384;
+  color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(214, 51, 132, 0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(214, 51, 132, 0.1);
+}
+
+table td form {
+  min-width: 115px; /* You can increase if needed */
+}
+
+/* ===== Dropdown Styling ===== */
+select.form-select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+select.form-select:focus {
+  border-color: #d63384;
+  box-shadow: 0 0 4px rgba(214, 51, 132, 0.3);
+}
+
+/* ===== Search Input ===== */
+#searchInput {
+  border-radius: 20px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #d63384;
+  box-shadow: 0 0 8px rgba(214, 51, 132, 0.3);
+}
+
+/* ===== Tables Section Titles ===== */
+h3 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ===== Footer (optional) ===== */
+footer {
+  text-align: center;
+  background: #d63384;
+  color: #fff;
+  padding: 1rem;
+  margin-top: 3rem;
+  border-radius: 10px 10px 0 0;
+}
